@@ -1,0 +1,181 @@
+<!DOCTYPE html>  
+ <html>  
+   <head>  
+      <title>Angular JS Forms</title>  
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>  
+       
+      <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title> Shoponline </title>
+
+         
+ <style>  
+         table, th , td { 
+            align-items: center; 
+            border: 1px solid grey;  
+            border-collapse: collapse;  
+            padding: 10px;  
+         }  
+           
+         table tr:nth-child(odd) {  
+            background-color: lightpink;  
+         }  
+           
+         table tr:nth-child(even) {  
+            background-color: lightblue;  
+         }  
+         .confirm{
+            font-size:  20px;
+            font-weight: 700;
+            outline: none;
+            border: none;
+            background-color: #1d1d1d;
+            color: aliceblue;
+            padding: 13px 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+      </style>  
+        
+   </head>  
+   <body   align="center">  
+        
+      <h2> Confirm your Order !!</h2> 
+		<hr>	
+		<br>
+		<br>
+      <div ng-app = "mainApp"  ng-controller = "studentController">  
+           
+         <form  background-color="blue" align="center" name = "studentForm" novalidate>  
+            <table  align="center" border = "0">  
+               <tr>  
+                  <td>Enter first name:</td>  
+                  <td><input name = "firstname" type = "text" ng-model = "firstName" required>  
+                     <span style = "color: red" ng-show = "studentForm.firstname.$dirty && studentForm.firstname.$invalid">  
+                        <span ng-show = "studentForm.firstname.$error.required">First Name is required.</span>  
+                     </span>  
+                  </td>  
+               </tr>  
+                 
+               <tr>  
+                  <td>Enter last name: </td>  
+                  <td><input name = "lastname"  type = "text" ng-model = "lastName" required>  
+                     <span style = "color:red" ng-show = "studentForm.lastname.$dirty && studentForm.lastname.$invalid">  
+                        <span ng-show = "studentForm.lastname.$error.required">Last Name is required.</span>  
+                     </span>  
+                  </td>  
+               </tr>  
+                 
+               <tr>  
+                  <td>Email: </td><td><input name = "email" type = "email" ng-model = "email" length = "100" required>  
+                     <span style = "color:red" ng-show = "studentForm.email.$dirty && studentForm.email.$invalid">  
+                        <span ng-show = "studentForm.email.$error.required">Email is required.</span>  
+                        <span ng-show = "studentForm.email.$error.email">Invalid email address.</span>  
+                     </span>  
+                  </td>  
+               </tr> 
+				<tr>  
+                  <td>Address: </td><td><input name = "address" type = "address" ng-model = "address" length = "100" required>  
+                     <span style = "color:red" ng-show = "studentForm.address.$dirty && studentForm.address.$invalid">  
+                        <span ng-show = "studentForm.address.$error.required">Address is required.</span>  
+                        <span ng-show = "studentForm.address.$error.address">Invalid address address.</span>  
+                     </span>  
+                  </td>  
+               </tr
+               
+			   <tr>
+							  Select your City:
+				<select ng-model="myVar">
+				  <option value="satara">Satara
+				  <option value="pune">Pune
+				  <option value="nashik">Nashik
+				  <option value="mumbai">Mumbai
+				  <option value="nagpur">Nagpur
+				  <option value="aurangabad">Aurangabad
+				</select>
+
+				
+				<div ng-switch="myVar">
+				  <div ng-switch-when="satara">
+					 <h1>Thank you for Shoping</h1>
+					 <p>Orders are Avaliable in Satara.</p>
+				  </div>
+				  <div ng-switch-when="pune">
+					 <h1>Thank you for Shoping</h1>
+					 <p>Orders are Avaliable in Pune.</p>
+				  </div>
+				  <div ng-switch-when="nashik">
+					 <h1>Thank you for Shoping</h1>
+					 <p>Orders are Avaliable in Nashik.</p>
+				  </div>
+				  <div ng-switch-when="mumbai">
+					 <h1>Thank you for Shoping</h1>
+					 <p>Orders are Avaliable in Mumbai.</p>
+				  </div>
+				  <div ng-switch-when="nagpur">
+					 <h1>Thank you for Shoping</h1>
+					 <p>Orders are Avaliable in Nagpur.</p>
+				  </div>
+				  <div ng-switch-when="aurangabad">
+					 <h1>Thank you for Shoping</h1>
+					 <p>Orders are Avaliable in Aurangabad.</p>
+				  </div>
+				  <div ng-switch-default>
+					 <h1>Thank you for Shoping</h1>
+					 <p>Select the city for receiving the delivery.</p>
+				  </div>
+				</div>
+			   </tr>
+                <tr>  
+                  <td>  
+                     <button ng-click = "reset()">Reset</button>  
+                  </td>  
+                  <td>  
+                     <button ng-disabled = "studentForm.firstname.$dirty &&  
+                        studentForm.firstname.$invalid || studentForm.lastname.$dirty &&  
+                        studentForm.lastname.$invalid || studentForm.email.$dirty &&  
+                        studentForm.email.$invalid  || studentForm.address.$dirty &&
+						studentForm.address.$invalid" ng-click="submit()">Submit</button>  
+                  </td>  
+               </tr>  
+               
+     </table>  
+         </form>  
+      </div>  
+        <script>  
+         var mainApp = angular.module("mainApp", []);  
+         mainApp.controller('studentController', function($scope) {  
+            $scope.reset = function(){  
+               $scope.firstName = "";  
+               $scope.lastName = "";  
+               $scope.email = ""; 
+			   $scope.address = "";
+				
+            }  
+             $scope.reset();  
+         });  
+      </script>
+      <br>
+      <br>
+      <br>
+      <div class="confirm">
+         <button onclick="myFunction()"> Confirm </button>
+
+         <p id="demo"></p>
+
+         <script>
+         function myFunction() {
+         var txt;
+         var r = confirm("Press a button!\nEither OK or Cancel.\n To make your order confirm press ok or press cancel if you want to cancel it.");
+         if (r == true) {
+            txt = "Thanks for your Order!";
+         } else {
+            txt = "You Can Also try another products!";
+         }
+         document.getElementById("demo").innerHTML = txt;
+         }
+         </script>
+      </div>
+     </body>  
+</html>  
